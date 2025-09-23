@@ -1,107 +1,210 @@
+/* ---------- 基本樣式 ---------- */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-header {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+  display: flex;
 }
 
-.quick-nav {
-    position: fixed;
-    right: 3px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(51, 51, 51, 0.8);
-    padding: 10px;
-    border-radius: 8px;
-}
-.quick-nav a{
-    display: block;
-    margin: 10px 0;
-    text-decoration: none;
-    color: whitesmoke;
+/* 側邊欄 */
+.sidebar {
+  width: 20vw;
+  background: #bd5d38;
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+  display: flex;                
+  flex-direction: column;
+  justify-content: center;      /* 垂直置中 */
+  align-items: center;          /* 水平置中 */
+  text-align: center;           
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
 }
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+
+.sidebar ul li {
+  margin: 10px 0;
+  font-weight: bold;
 }
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
+
+.sidebar .nav-link {
+  display: block;
+  padding: 10px 0;
+  color: #c6c6c6;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.5s;
 }
+
+.sidebar .nav-link:hover {
+  color: #ffffff;
+  text-shadow: 0 0 8px #ffffff, 0 0 15px #ff9900;
+}
+
+/* 大頭照 */
+#personalImg img{
+    width: 8vw;
+    height: 8vw;           /* 正方形保持圓形 */
+    border-radius: 50%;
+    border: 5px solid #db8d6e; 
+    object-fit: cover;
+}
+
+.sidebar h2 {
+  margin: 0 0 20px 0;
+}
+
+/* 主內容 */
+.content {
+  margin-left: 20vw;
+  padding: 0 10%;
+  flex: 1;
+}
+
 section {
-    padding: 50px;
-    text-align: center;
+    margin-bottom: 50px;
 }
-#about{
-  padding: 0 20%;
+
+/* 社群 icon */
+#about a {
+  font-size: 30px;
+  margin-right: 15px;
+  color: #333;
+  transition: 0.3s;
 }
-#about li{
-    line-height: 2;
+
+#about a:hover {
+    color: #bd5d38;
 }
-.gallery {
+
+.social-links {
+    margin-top: 15px;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     gap: 20px;
 }
-.project {
-    background: white;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+
+/* 標題樣式 */
+h1 {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+  text-transform: uppercase;
 }
 
-.gallery .project a{
-    text-decoration: none;
+h2{
+    margin-top: 0;
 }
 
-.project img {
+span{
+    color: #bd5d38;
+}
+
+/* 工作經歷區塊 */
+.job {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.titleAndDesc{
+    width: 80%;
+}
+
+.skills li {
+  margin: 5px 0;
+}
+
+.info strong {
+  font-weight: bold;
+}
+
+.info span {
+  text-align: right;
+}
+
+/* ---------- RWD 響應式 ---------- */
+
+/* 平板 / 小螢幕 */
+@media screen and (max-width: 768px) {
+  /* sidebar 改為水平橫向 */
+  .sidebar {
     width: 100%;
-    border-radius: 8px;
-}
-#about ul li{
-    list-style: none;
-}
-form {
+    height: auto;
+    position: fixed;          /* 固定在頂端 */
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px 0;
+    z-index: 999;             /* 保持在最上層 */
+  }
+
+  .sidebar ul {
     display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sidebar ul li {
+    margin: 0 10px;
+  }
+
+  .content {
+    margin-left: 0;
+    margin-top: 70px; /* 視 sidebar 高度調整 */
+    padding: 20px;
+  }
+
+  /* 大頭照縮小 */
+  #personalImg img {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* 社群 icon 縮小 */
+  #about a {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+
+  /* job 改成垂直排列 */
+  .job {
     flex-direction: column;
-    align-items: center;
+  }
+
+  .titleAndDesc {
+    width: 100%;
+  }
 }
-input, textarea {
-    width: 40%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #555;
-}
-footer {
-    text-align: center;
-    background-color: #333;
-    color: white;
-    padding: 1rem;
-    margin-top: 20px;
+
+/* 超小手機 */
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  .sidebar .nav-link {
+    font-size: 14px;
+  }
+
+  #about a {
+    font-size: 20px;
+  }
+
+  .info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .info span {
+    text-align: left;
+  }
 }
