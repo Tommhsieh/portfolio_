@@ -5,6 +5,10 @@ body {
   display: flex;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 
 
 /* 側邊欄 */
@@ -67,7 +71,8 @@ body {
 }
 
 section {
-    margin-bottom: 50px;
+    min-height: 50vh;
+
 }
 
 /* 社群 icon */
@@ -245,11 +250,11 @@ span{
   }
 
   .card-container {
-    justify-content: center;  /* 置中 */
+    justify-content: center;
   }
 
   .card {
-    width: 45%;  /* 兩張卡片一行 */
+    width: calc(50% - 20px); /* 兩張一排，扣掉 gap */
   }
 }
 
