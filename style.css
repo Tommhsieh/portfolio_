@@ -1,20 +1,27 @@
 /* ---------- 基本樣式 ---------- */
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
 body {
   margin: 0;
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+  "Noto Sans TC", sans-serif;
   display: flex;
+  background-color: #0d0d0f;   /* Apple感柔黑 */
+  color: #f5f5f7;              /* Apple白 */
 }
 
 * {
   box-sizing: border-box;
 }
 
-
-
 /* 側邊欄 */
 .sidebar {
   width: 20vw;
-  /* background: #497cf5;*/
+  background-color: #111113;
+  border-right: 1px solid #1c1c1e;
   height: 100vh;
   padding: 20px;
   position: fixed;
@@ -37,17 +44,16 @@ body {
 }
 
 .sidebar .nav-link {
+  color: #8e8e93;
+  font-weight: 500;
+  transition: 0.3s ease;
   display: block;
   padding: 10px 0;
-  color: #c6c6c6;
   text-decoration: none;
-  font-weight: bold;
-  transition: 0.5s;
 }
 
 .sidebar .nav-link:hover {
   color: #ffffff;
-  text-shadow: 0 0 8px #0a0000, 0 0 15px #010309;
 }
 
 /* 大頭照 */
@@ -71,20 +77,30 @@ body {
 }
 
 section {
-    min-height: 50vh;
+  min-height: 100vh;         /* 一整個畫面 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* 垂直置中 */
+  scroll-margin-top: 0;
 
+
+}
+
+#experience {
+  justify-content: flex-start;
+  padding-top: 100px;
 }
 
 /* 社群 icon */
 #about a {
   font-size: 30px;
   margin-right: 15px;
-  color: #333;
+  color: #8e8e93;
   transition: 0.3s;
 }
 
 #about a:hover {
-    color: #bd5d38;
+    color: #ffffff;
 }
 
 .social-links {
@@ -95,10 +111,12 @@ section {
 
 /* 標題樣式 */
 h1 {
-  border-bottom: 2px solid #eee;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  border: none;
+  letter-spacing: -0.5px;
   padding-bottom: 10px;
-  margin-bottom: 20px;
-  font-weight: bolder;
   text-transform: uppercase;
 }
 
@@ -107,7 +125,7 @@ h2{
 }
 
 span{
-    color: #bd5d38;
+    color: #8e8e93;
 }
 
 /* 工作經歷區塊 */
@@ -135,31 +153,37 @@ span{
 /* ---------- 作品集 卡片區 ---------- */
 
 .card-container {
-  display: flex;          /* 橫向排列 */
+  display: flex;
   gap: 20px;
-   flex-wrap: wrap;   /* ← 關鍵 */
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
   display: block;         /* <a> 變成區塊 */
   width: 220px;
   padding: 20px;
-   min-height: 280px;  /* 視圖片+文字量調整 */
+  min-height: 280px;  /* 視圖片+文字量調整 */
 
   text-decoration: none;  /* 移除底線 */
   color: inherit;
 
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,.1);
-
   cursor: pointer;
-  transition: 0.2s;
+
+  background: #161618;
+  border: 1px solid #1f1f22;
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+
+  box-shadow: 
+    0 4px 20px rgba(0,0,0,0.4);
+  transition: transform 0.4s cubic-bezier(.4,0,.2,1),
+              border-color 0.4s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+  transform: translateY(-6px);
+  border-color: #2c2c30;
 }
 
 .card:active {
@@ -167,16 +191,19 @@ span{
 }
 
 .card-img{
+  border-radius: 12px;
   width: 100%;           /* 撐滿卡片寬度 */
   height: 150px;         /* 固定高度，可視需求調整 */
   object-fit: cover;     /* 保持比例，超出裁切 */
   border-radius: 10px;   /* 圓角美化 */
   margin-bottom: 10px;   /* 標題與圖片間距 */
+  transition: transform 0.6s ease;
 }
 
 .card:hover .card-img {
-  transform: scale(1.05);
   transition: transform 0.3s;
+  border-color: #2c2c30;
+  transform: scale(1.03);
 }
 
 .card h3 {
@@ -188,7 +215,7 @@ span{
 .card p {
   margin: 0 0 10px 0;
   font-size: 14px;
-  color: #555;
+  color: #bbb;
 }
 
 
@@ -238,6 +265,7 @@ span{
   #about a {
     font-size: 24px;
     margin-right: 10px;
+    color: #ddd;
   }
 
   /* job 改成垂直排列 */
@@ -256,6 +284,12 @@ span{
   .card {
     width: calc(50% - 20px); /* 兩張一排，扣掉 gap */
   }
+
+  section {
+  min-height: auto;
+  justify-content: flex-start;
+  padding: 60px 20px;
+}
 }
 
 @media screen and (max-width: 480px) {
@@ -280,11 +314,15 @@ span{
   }
 
   .sidebar .nav-link {
+    color: #8e8e93;
+    font-weight: 500;
+    transition: 0.3s ease;
     font-size: 14px;
   }
 
   #about a {
     font-size: 20px;
+    color: #ddd;
   }
 
   .info {
